@@ -1,1 +1,188 @@
-<h1>Hello!</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Distributed Global</title>
+    <style type="text/css" media="screen">
+      body {
+        font-family: "HelveticaNeue", "DIN", Verdana, "Lucida Grande", Helvetica, sans-serif;
+        background-color: #fff;
+      }
+      
+      #big_logo {
+        position: fixed;
+        top: 50px;
+        right: 190px;
+      }
+
+      #small_logo {
+        position: fixed;
+        top: 450px;
+        right: 190px;
+        display: none;
+      }
+
+      #info {
+        position: fixed;
+        top: 340px;
+        right: 120px;
+        list-style: none;
+        width: 324px;
+      }
+      
+      li {
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+      
+      .header:hover {
+        text-decoration: underline;
+      }
+    
+      .header {
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .list-ele {
+        position: relative;
+        top: 2px;
+        right: 4px;
+        cursor: pointer;
+      }
+      
+      
+      .drawer-content {
+        color: #16333e;
+        font-size: 85%;
+        margin-left: 21px;
+      }
+      
+      .drawer-content a {
+        color: #16333e;
+      }
+    
+      .visible-drawer {
+        display: block-inline;
+        width: 220px;
+        padding-left: 2px;
+        margin-top: 8px;
+      }
+      
+      .hidden-drawer {
+        display: block-inline;
+        width: 300px;
+        padding-left: 2px;
+        margin-top: 5px;
+        visibility: hidden;
+        height: 0px;
+      }
+
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+    <script>
+      $( document ).ready( function() {
+        $( '.header' ).click( function() {
+          var drawer = $( this ).siblings( '.drawer-content' );
+          if ( $( drawer ).hasClass( 'hidden-drawer' ) ) {
+            
+            $( this ).siblings( 'img' ).attr( 'src', 'images/open_list_element.gif' );
+            $( drawer ).removeClass( 'hidden-drawer' );
+            $( drawer ).addClass( 'visible-drawer' );
+            
+          } else {
+            
+            $( this ).siblings( 'img' ).attr( 'src', 'images/closed_list_element.gif' );
+            $( drawer ).removeClass( 'visible-drawer' );
+            $( drawer ).addClass( 'hidden-drawer' );
+            
+          }
+          
+        });
+        
+        $( '.list-ele' ).click( function() {
+          var drawer = $( this ).siblings( '.drawer-content' );
+          if ( $( drawer ).hasClass( 'hidden-drawer' ) ) {
+            
+            $( this ).attr( 'src', '/images/open_list_element.gif' );
+            $( drawer ).removeClass( 'hidden-drawer' );
+            $( drawer ).addClass( 'visible-drawer' );
+            
+          } else {
+            
+            $( this ).attr( 'src', '/images/closed_list_element.gif' );
+            $( drawer ).removeClass( 'visible-drawer' );
+            $( drawer ).addClass( 'hidden-drawer' );
+            
+          }
+        });
+        
+        var lower_bound_window = 646;
+        var lower_bound_logo = 575;
+        var window_height = $( window ).height();
+        var diff = window_height - lower_bound_window;
+        var small_logo_top;
+        
+        if ( diff <= 0 ) {
+          small_logo_top = lower_bound_logo;
+        } else {
+          small_logo_top = lower_bound_logo + diff;
+        }
+        
+        $( '#small_logo' ).css( 'top', small_logo_top );
+        
+        $( '#small_logo' ).fadeIn( 'slow' );
+        
+        $( window ).resize( function () {
+          var window_height = $( window ).height();
+          var diff = window_height - lower_bound_window;
+          var small_logo_top;
+          
+          
+          if ( diff <= 0 ) {
+            small_logo_top = lower_bound_logo;
+          } else {
+            small_logo_top = lower_bound_logo + diff;
+          }
+          
+          $( '#small_logo' ).css( 'top', small_logo_top );
+          
+          
+        });
+      });
+    </script>
+    
+    <link rel="shortcut icon" href="images/dg_favicon.png" />
+    
+  </head>
+  <body>
+    <div id="main">
+      <img id="big_logo" src="images/logo_big.png" />
+      
+      <ul id="info">
+        <li class="drawer">
+          <img src="images/closed_list_element.gif" class="list-ele" />
+          <span class="header">ABOUT</span>
+          <div class="visible-drawer drawer-content">
+          	Distributed Global is an asset management company exclusively focused on delivering returns to investors through our innovative investment approach to digital and blockchain-based assets.  
+          </div>
+        </li>
+        <li class="drawer">
+
+          <img src="images/closed_list_element.gif" class="list-ele" />
+          <span class="header">CONTACT</span>
+          <div class="visible-drawer drawer-content">
+		  <span><a href="mailto:info@distributedglobal.com">info@distributeglobal.com</a></span>
+	    <!--
+	    <span><a href="/cdn-cgi/l/email-protection#ff8f8dbf8b978d96899a9c9e8fd19c9092" target="_top"><span class="__cf_email__" data-cfemail="205052605448524956454341500e434f4d">[email&#160;protected]</span></a> - Media and comment requests</span>-->
+            
+          </div>
+        </li>
+        
+      </ul>
+      
+    </div>
+      <img id="small_logo" src="images/logo_small.png" />
+  <script type="text/javascript">/* <![CDATA[ */(function(d,s,a,i,j,r,l,m,t){try{l=d.getElementsByTagName('a');t=d.createElement('textarea');for(i=0;l.length-i;i++){try{a=l[i].href;s=a.indexOf('/cdn-cgi/l/email-protection');m=a.length;if(a&&s>-1&&m>28){j=28+s;s='';if(j<m){r='0x'+a.substr(j,2)|0;for(j+=2;j<m&&a.charAt(j)!='X';j+=2)s+='%'+('0'+('0x'+a.substr(j,2)^r).toString(16)).slice(-2);j++;s=decodeURIComponent(s)+a.substr(j,m-j)}t.innerHTML=s.replace(/</g,'&lt;').replace(/>/g,'&gt;');l[i].href='mailto:'+t.value}}catch(e){}}}catch(e){}})(document);/* ]]> */</script></body>
+</html>
